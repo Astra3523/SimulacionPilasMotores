@@ -9,7 +9,6 @@ package simulacionpilasmotores;
  * @author Astra
  */
 public class Motores {
-    
     String marca;
     String modelo;
     int potencia;
