@@ -18,6 +18,9 @@ public class SimulacionPilasMotores {
         System.out.println("Hola");
         System.out.println("aDios");
         System.out.println("xd");
+        System.out.println("aldo");
+            System.out.println("saul ");
+                System.out.println("luis");
         
     }
     
