@@ -24,6 +24,7 @@ public class SimulacionPilasMotores {
         int opc;
         
         do{
+            System.out.println("hola");
             System.out.println("TALLER MECANICO AUTOMOTRIZ");
             System.out.println("1.- Agregar motor a almacen de entrada");
             System.out.println("2.- Acerca de...");
