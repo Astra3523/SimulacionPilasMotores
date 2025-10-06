@@ -25,6 +25,7 @@ public class SimulacionPilasMotores {
         
         do{
             System.out.println("hola");
+            System.out.println("Hola luis como estas jasdjas");
             System.out.println("TALLER MECANICO AUTOMOTRIZ");
             System.out.println("1.- Agregar motor a almacen de entrada");
             System.out.println("2.- Acerca de...");
