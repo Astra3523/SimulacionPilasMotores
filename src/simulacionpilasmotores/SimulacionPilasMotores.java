@@ -24,8 +24,6 @@ public class SimulacionPilasMotores {
         int opc;
         
         do{
-            System.out.println("hola");
-            System.out.println("Hola luis como estas jasdjas");
             System.out.println("TALLER MECANICO AUTOMOTRIZ");
             System.out.println("1.- Agregar motor a almacen de entrada");
             System.out.println("2.- Acerca de...");
@@ -41,14 +39,14 @@ public class SimulacionPilasMotores {
             leer.nextLine();
             
             switch(opc){
-                case 1:
+                case 1:  //Se ingresan los datos marca, modelo, y potencia
                     System.out.println("Marca: ");
                     String marca = leer.nextLine();
                     System.out.println("Modelo: ");
                     String modelo = leer.nextLine();
                     System.out.println("Potencia: ");
                     int potencia = leer.nextInt();
-                    Motores motor1 = new Motores(marca, modelo, potencia); 
+                    Motores motor1 = new Motores(marca, modelo, potencia);  //Se crea objeto motor 1 para asignarlo a almacenEntrada 
                     almacenEntrada.push(motor1);
                     System.out.println("Motor agregado a almacen de entrada "+motor1);
                 break;
@@ -69,7 +67,7 @@ public class SimulacionPilasMotores {
                     break;
                 case 3:
                     
-                    if(almacenEntrada.isVacia()){
+                    if(almacenEntrada.isVacia()){  //evita errores de codigo en el  alamcenamiento de los datos en estas condiciones 
                         System.out.println("El almacen entrada esta vacio");
                         break;
                     }
@@ -79,9 +77,9 @@ public class SimulacionPilasMotores {
                     }
                     
                     try{
-                        c = almacenEntrada.peek();
-                        almacenEntrada.pop();
-                        pila1.push(c);
+                        c = almacenEntrada.peek(); // se utiliza la variable auxiliar c que viene d la clase motores , el almacen de entrada se lleva al tope
+                        almacenEntrada.pop(); //se saca el almacen de entrada 
+                        pila1.push(c);// se añade a la pila 1
                         System.out.println("El motor se cambio a la pila 1 exitosamente");
                         leer.nextLine();
                         leer.nextLine();
@@ -92,19 +90,19 @@ public class SimulacionPilasMotores {
                     break;
                 case 4:
                     
-                        if(almacenEntrada.isVacia()){
+                        if(almacenEntrada.isVacia()){ // es veradero solo si no hay elementos ,si esta vacio no tiene sentido intentar sacar algo de el 
                         System.out.println("El almacen entrada esta vacio");
                         break;
                     }
-                    else if(pila2.isLlena()){
+                    else if(pila2.isLlena()){ //si la pila esta llena,no se pueden insertar mas elementos 
                         System.out.println("La pila 2 esta llena");
                         break;
                     }
                     
                     try{
-                        c = almacenEntrada.peek();
-                        almacenEntrada.pop();
-                        pila2.push(c);
+                        c = almacenEntrada.peek();// se utiliza la variable auxiliar c que viene d la clase motores , el almacen de entrada se lleva al tope
+                        almacenEntrada.pop();//se saca el almacen de entrada
+                        pila2.push(c);//se añade a la pila 2
                         System.out.println("El motor se cambio a la pila 2 exitosamente");
                         leer.nextLine();
                         leer.nextLine();
@@ -125,9 +123,9 @@ public class SimulacionPilasMotores {
                     }
                     
                     try{
-                        c = pila1.peek();
-                        pila1.pop();
-                        pila2.push(c);
+                        c = pila1.peek(); // se lleva la pila 1 hasta el tope
+                        pila1.pop();// se saca la pila 1 del tope
+                        pila2.push(c); // se mete la pila 1 a la pila 2
                         System.out.println("El motor se cambio de pila 1 a pila 2");
                         System.out.println(c);
                         leer.nextLine();
@@ -151,9 +149,9 @@ public class SimulacionPilasMotores {
                     }
                     
                     try{
-                        c = pila2.peek();
-                        pila2.pop();
-                        pila1.push(c);
+                        c = pila2.peek(); // se lleva la pila 2 hsta el tope 
+                        pila2.pop(); // se saca la pila 2 del tope
+                        pila1.push(c); // se mete la pila 2 a la pila 1
                         System.out.println("El motor se cambio de pila 2 a pila 1");
                         System.out.println(c);
                         leer.nextLine();
@@ -176,9 +174,9 @@ public class SimulacionPilasMotores {
                     }
                     
                     try{
-                        c = pila1.peek();
-                        pila1.pop();
-                        almacenSalida.push(c);
+                        c = pila1.peek(); // se lleva la pila 1 hasta el tope, primer lugar 
+                        pila1.pop(); //  se saca la pila 1 de ese lugar
+                        almacenSalida.push(c); // se mete al almacenSalida
                         System.out.println("El motor se envio al almacen de salida");
                         System.out.println(c);
                         leer.nextLine();
@@ -200,9 +198,9 @@ public class SimulacionPilasMotores {
                     }
                     
                     try{
-                        c = pila2.peek();
-                        pila2.pop();
-                        almacenSalida.push(c);
+                        c = pila2.peek();// se lleva la pila 2 hasta el tope, primer lugar 
+                        pila2.pop();// se saca la pila 2 de ese lugar 
+                        almacenSalida.push(c); // se mete la pila 2 al almacenSalida
                         System.out.println("El motor se envio al almacen de salida");
                         System.out.println(c);
                         leer.nextLine();
