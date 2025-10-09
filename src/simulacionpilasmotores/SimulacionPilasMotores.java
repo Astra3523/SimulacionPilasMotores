@@ -21,7 +21,7 @@ public class SimulacionPilasMotores extends JFrame{
     
         private JButton btnAcercaDe;
         private JButton btnSalir;
-        private JPanel almacenEntradaForma;
+        private JPanel pnlAlmacenEntrada;
         private JPanel almacenSalidaForma;
         private JLabel lblAlmacenEntrada;
         private JLabel lblAlmacenSalida;
@@ -29,7 +29,8 @@ public class SimulacionPilasMotores extends JFrame{
         private JPanel pnlPila2;
         private JLabel lblPila1;
         private JLabel lblPila2;
-        
+        private JPanel[] pnlmotores = new JPanel[14]; //HAcemos un array con los 14 "Motores" q se que van a existir
+        int index; //esto lo voy a ocupar para saber en q motor "voy"
         public SimulacionPilasMotores(){
             setSize(800, 600);
             setTitle("Pilas de motores");
@@ -41,7 +42,7 @@ public class SimulacionPilasMotores extends JFrame{
             getContentPane().setLayout(null);
             btnAcercaDe = new JButton();
             btnSalir = new JButton();
-            almacenEntradaForma = new JPanel();
+            pnlAlmacenEntrada = new JPanel();
             almacenSalidaForma = new JPanel();
             lblAlmacenEntrada = new JLabel();
             lblAlmacenSalida = new JLabel();
@@ -49,6 +50,17 @@ public class SimulacionPilasMotores extends JFrame{
             pnlPila2 = new JPanel();
             lblPila1 = new JLabel();
             lblPila2 = new JLabel();
+            for (int i = 0; i < pnlmotores.length; i++) { // hacemos todos nuestros motores pero pues invisibles 
+                JPanel rect = new JPanel();
+                
+                rect.setBounds(50, 60 + i*30, 100, 30); // posicion inicial apilada
+                rect.setBackground(Color.GREEN);
+                rect.setVisible(false); // empiezan ocultos
+                add(rect);
+                pnlmotores[i] = rect;
+
+                makeDraggable(rect); // que cada uno pueda arrastrarse
+        }
             
         addWindowListener(new WindowAdapter() {
             @Override
@@ -73,17 +85,26 @@ public class SimulacionPilasMotores extends JFrame{
             public void actionPerformed(ActionEvent evt){
                 btnAcercaDeActionPerformed(evt);
             }
+            
         });
         getContentPane().add(btnAcercaDe);
         btnAcercaDe.setBounds(50, 400, 70, 30);
         
-        //Configuramos el almacen de salida junto con su etiqueta
-        almacenEntradaForma.setBounds(90, 90, 120, 200); // x, y, ancho, alto
-        almacenEntradaForma.setBackground(java.awt.Color.BLACK); // color del rectángulo
-        getContentPane().add(almacenEntradaForma);
+        //Configuramos el almacen de Entrada junto con su etiqueta
+        pnlAlmacenEntrada.setBounds(90, 90, 120, 200); // x, y, ancho, alto
+        pnlAlmacenEntrada.setBackground(java.awt.Color.BLACK); // color del rectángulo
+        getContentPane().add(pnlAlmacenEntrada);
         lblAlmacenEntrada.setText("Almacen de Entrada");
         getContentPane().add(lblAlmacenEntrada);
         lblAlmacenEntrada.setBounds(90, 200, 120, 200);
+        pnlAlmacenEntrada.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                crearMotor(e);
+            }  
+        });
+        
+        
         
         //Configuramos el almacen de salida junto con su etiqueta
         almacenSalidaForma.setBounds(590, 90, 120, 200);
@@ -111,6 +132,30 @@ public class SimulacionPilasMotores extends JFrame{
         
         
         }
+        
+        private void crearMotor(MouseEvent e){
+                    if (index < pnlmotores.length) {
+                        pnlmotores[index].setVisible(true);
+                        index++;
+                }
+        }
+        private void makeDraggable(JPanel panel) {
+            final Point[] clickPoint = {null};
+            panel.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    clickPoint[0] = e.getPoint();
+                }
+            });
+            panel.addMouseMotionListener(new MouseMotionAdapter() {
+                @Override
+                public void mouseDragged(MouseEvent e) {
+                    int x = panel.getX() + e.getX() - clickPoint[0].x;
+                    int y = panel.getY() + e.getY() - clickPoint[0].y;
+                    panel.setLocation(x, y);
+                }
+            });
+        }
         private void btnAcercaDeActionPerformed(ActionEvent evt){
             JOptionPane.showMessageDialog(this,"Simulacion de motores \n Equipo 5\n Integrantes \n Saul Alejandro Ramirez Leal \n Gudiño Ochoa Luis Gustavo \n Reyes Cázares Aldo Emanuel");
         }
@@ -120,6 +165,8 @@ public class SimulacionPilasMotores extends JFrame{
         private void exitForm(WindowEvent evt) {
             System.exit(0);
         }
+        
+        
     public static void main(String[] args) {
 
           new SimulacionPilasMotores().setVisible(true);
