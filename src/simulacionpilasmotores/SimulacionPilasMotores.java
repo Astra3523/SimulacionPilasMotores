@@ -12,6 +12,7 @@ import java.awt.event.*;
 /**
  *
  * @author Astra
+ * //Vamos a intentar refactorizar este codigo
  */
 public class SimulacionPilasMotores extends JFrame {
 
