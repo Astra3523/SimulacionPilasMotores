@@ -12,7 +12,7 @@ public class Motores {
     String marca;
     String modelo;
     int potencia;
-
+    boolean origenEntrada;
     public Motores() {
     }
 
@@ -20,6 +20,15 @@ public class Motores {
         this.marca = marca;
         this.modelo = modelo;
         this.potencia = potencia;
+        this.origenEntrada = true;
+    }
+
+    public boolean isOrigenEntrada() {
+        return origenEntrada;
+    }
+
+    public void setOrigenEntrada(boolean origenEntrada) {
+        this.origenEntrada = origenEntrada;
     }
 
     public String getMarca() {
